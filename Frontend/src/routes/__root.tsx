@@ -36,13 +36,13 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
+      { title: "Synapse Attendance Management System" },
       { name: "description", content: "Real-time attendance management system" },
-      { property: "og:title", content: "SYNAPSE — Attendance Management" },
+      { property: "og:title", content: "Synapse Attendance Management System" },
       { property: "og:description", content: "Real-time attendance management system" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@Synapse" },
     ],
     links: [
       {
