@@ -1,0 +1,20 @@
+const { createLogger, format, transports } = require("winston");
+
+const logger = createLogger({
+  level: process.env.LOG_LEVEL || "info",
+  format: format.combine(
+    format.timestamp(),
+    format.errors({ stack: true }),
+    format.printf(({ level, message, timestamp, stack }) => {
+      return `${timestamp} [${level.toUpperCase()}] ${stack || message}`;
+    })
+  ),
+  transports: [new transports.Console()],
+});
+
+const morganStream = {
+  write: (message) => logger.info(message.trim()),
+};
+
+module.exports = logger;
+module.exports.morganStream = morganStream;

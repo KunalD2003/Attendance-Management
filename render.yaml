@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: attendance-backend
+    runtime: node
+    rootDir: Backend
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 5000
+      - key: CLIENT_URL
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: CLOUDINARY_FOLDER
+        value: attendance-selfies
+      - key: GEOFENCE_ENABLED
+        value: false
+      - key: OFFICE_LATITUDE
+        value: 28.6139
+      - key: OFFICE_LONGITUDE
+        value: 77.209
+      - key: GEOFENCE_RADIUS_METERS
+        value: 200
