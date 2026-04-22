@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts, useLocation, useNavigate } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, useLocation, useNavigate } from "@tanstack/react-router";
 import { Provider } from 'react-redux';
 import { store, useAppSelector } from '@/store';
 import { AppLayout } from '@/components/AppLayout';
@@ -6,8 +6,6 @@ import { useEffect } from 'react';
 import { useMeQuery } from '@/store/api';
 import { setCredentials } from '@/store/authSlice';
 import { useAppDispatch } from '@/store';
-
-import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
@@ -32,43 +30,9 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Synapse Attendance Management System" },
-      { name: "description", content: "Real-time attendance management system" },
-      { property: "og:title", content: "Synapse Attendance Management System" },
-      { property: "og:description", content: "Real-time attendance management system" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Synapse" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   return (
