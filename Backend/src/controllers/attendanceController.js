@@ -1,17 +1,10 @@
 const Attendance = require("../models/Attendance");
 const User = require("../models/User");
-const { toDateKey, round2 } = require("../utils/time");
+const { toDateKey, round2, formatHHMM } = require("../utils/time");
 const { uploadSelfieFromBase64 } = require("../utils/upload");
 const { distanceMeters, parseGeofenceConfig } = require("../utils/geo");
 
-const formatTime = (value) =>
-  value
-    ? new Date(value).toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      })
-    : null;
+const formatTime = (value) => (value ? formatHHMM(value) : null);
 
 const deriveSummaryFromSessions = (attendance) => {
   const sessions = attendance.punchSessions || [];

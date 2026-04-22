@@ -2,6 +2,7 @@ const PDFDocument = require("pdfkit");
 const XLSX = require("xlsx");
 const Attendance = require("../models/Attendance");
 const User = require("../models/User");
+const { formatHHMM } = require("../utils/time");
 
 const buildQuery = async (req) => {
   const { from, to, userId } = req.query;
@@ -39,8 +40,8 @@ const mapRows = (records) =>
   records.map((record) => ({
     Name: record.userId?.name || "",
     Date: record.date,
-    PunchIn: record.punchInAt ? new Date(record.punchInAt).toLocaleTimeString() : "",
-    PunchOut: record.punchOutAt ? new Date(record.punchOutAt).toLocaleTimeString() : "",
+    PunchIn: record.punchInAt ? formatHHMM(record.punchInAt) : "",
+    PunchOut: record.punchOutAt ? formatHHMM(record.punchOutAt) : "",
     HoursWorked: record.hoursWorked,
     Status: record.status,
     SelfieUrl: record.selfieUrl || "",
